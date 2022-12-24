@@ -1,0 +1,14 @@
+.popup__handlers {
+  margin: 18px auto 0;
+  max-width: 358px;
+  width: 100%;
+  border: 0;
+  font-size: 0;
+}
+
+@media screen and (max-width: 720px) {
+  .popup__handlers {
+    max-width: 238px;
+    margin-top: 15px;
+  }
+}
