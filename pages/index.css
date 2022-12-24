@@ -92,8 +92,8 @@
 }
 
 .profile__edit-button {
-  min-height: 24px;
-  max-width: 24px;
+  height: 24px;
+  width: 24px;
   background-image: url(../images/edit.png);
   background-color: #000;
   background-size: 10px;
@@ -101,7 +101,6 @@
   background-repeat: no-repeat;
   padding: 0;
   box-sizing: border-box;
-  width: 100%;
   border: 1px solid #FFFFFF;
   margin-top: 15px;
   transition: opacity .3s ease-out;
@@ -378,10 +377,9 @@
   }
 
   .profile__edit-button {
+    height: 18px;
+    width: 18px;
     min-width: 18px;
-    max-width: 18px;
-    min-height: 18px;
-    max-height: 18px;
     background-size: 7px;
     margin-top: 7px;
   }
