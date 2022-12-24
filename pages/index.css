@@ -1,0 +1,254 @@
+@import url(../vendor/normalize.css);
+
+@import url(../vendor/fonts/fonts.css);
+
+.page {
+  margin: 0 auto;
+  font-family: 'Inter', Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}
+
+.header {
+  display: flex;
+  height: min-content;
+  flex-direction: column;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 45px 0 40px;
+}
+
+.header__logo {
+  background-image: url(../images/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 142px;
+  min-height: 33px;
+}
+
+.header__line {
+  border-bottom: 1px solid #545454;
+  width: 100%;
+  opacity: 0.7;
+  padding-top: 41px;
+}
+
+.profile {
+  margin: 0 auto;
+  max-width: 880px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: min-content 3fr minmax(150px, auto);
+  gap: 30px;
+  align-items: center;
+}
+
+.profile__avatar {
+  max-width: 120px;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.profile__info {
+  display: grid;
+  max-width: 336px;
+  gap: 13px 18px;
+  grid-template-columns: minmax(294px, auto) minmax(24px, auto);
+  align-items: center;
+}
+
+.profile__name {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 1.14;
+  text-rendering: optimizeLegibility;
+  margin: 0;
+}
+
+.profile__status {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.profile__edit-button {
+  min-height: 24px;
+  width: 100%;
+  max-width: 24px;
+  box-sizing: border-box;
+  background-image: url(../images/edit.png);
+  background-color: #000;
+  background-size: 10px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 0;
+  border: 1px solid #FFFFFF;
+  margin-top: 7px;
+  transition: opacity 0.3s ease-out;
+}
+
+.profile__edit-button:hover {
+  opacity: 0.6;
+}
+
+.profile__add-button {
+  max-width: 150px;
+  min-height: 50px;
+  box-sizing: border-box;
+  background-image: url(../images/add.png);
+  background-color: #000;
+  background-size: 22px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  padding: 0;
+  border: 1px solid #FFFFFF;
+  width: 100%;
+  border-radius: 2px;
+  transition: opacity 0.3s ease-out;
+}
+
+.profile__add-button:hover {
+  opacity: 0.6;
+}
+
+.elements__list {
+  max-width: 880px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style: none;
+  gap: 17px;
+  margin: 0 auto;
+  padding: 51px 0 0;
+}
+
+.elements__item {
+  max-width: 282px;
+  border-radius: 10px;
+  background-color: #fff;
+  color: #000;
+}
+
+.elements__img {
+  border-radius: 10px 10px 0 0;
+}
+
+.elements__description {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 21px;
+  align-items: center;
+  margin: 23px 0 25px;
+}
+
+.elements__place {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.elements__heart {
+  width: 22px;
+  min-height: 19px;
+  background-image: url(../images/heart.png);
+  background-repeat: no-repeat;
+  transition: opacity 0.3s ease-out;
+}
+
+.elements__heart:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.footer {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.footer__copyright {
+  width: 100%;
+  color: #545454;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  padding: 66px 0 60px;
+  margin: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .profile {
+    width: calc(100% - 38px);
+  }
+
+  .header__logo {
+    margin-left: 27px;
+  }
+
+  .footer__copyright {
+    width: calc(100% - 38px);
+    font-size: 14px;
+    padding: 48px 0 36px;
+    margin: 0 auto;
+  }
+
+}
+
+@media screen and (max-width: 705px) {
+  .profile {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 282px;
+    justify-content: center;
+  }
+
+  .profile__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 10px;
+  }
+
+  .profile__add-button {
+    max-width: 282px;
+  }
+
+  .profile__name {
+    font-size: 27px;
+    line-height: 1.2;
+    padding-left: 25px;
+  }
+
+  .profile__status {
+    font-size: 14px;
+  }
+
+  .header__logo {
+    max-width: 104px;
+  }
+
+  .header {
+    padding-top: 28px;
+  }
+
+  .header__line {
+    padding-top: 22px;
+  }
+
+  .profile__edit-button {
+    max-width: 18px;
+    min-height: 18px;
+    margin-top: 0;
+  }
+
+  .elements__list {
+    padding-top: 36px;
+    gap: 19px;
+  }
+}
