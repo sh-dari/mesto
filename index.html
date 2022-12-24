@@ -18,12 +18,14 @@
     <main class="content">
       <section class="profile">
         <img class="profile__avatar" alt="Аватар пользователя" src="./images/avatar.jpg">
-        <div class="profile__info">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button href="#" class="profile__edit-button"></button>
-          <p class="profile__status">Исследователь океана</p>
+        <div class="profile__container">
+          <div class="profile__info">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__job">Исследователь океана</p>
+          </div>
+          <input type="button" class="profile__edit-button">
         </div>
-        <button href="#" class="profile__add-button"></button>
+        <input type="button" class="profile__add-button">
       </section>
       <section class="elements">
         <ul class="elements__list">
@@ -31,42 +33,42 @@
             <img class="elements__img" alt="Здание посреди природы" src="./images/karachevsk.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Карачаевск</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__img" alt="Поле на рассвете" src="./images/elbrus.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Гора Эльбрус</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__img" alt="Горы" src="./images/dombai.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Домбай</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__img" alt="Поле на рассвете" src="./images/elbrus.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Гора Эльбрус</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__img" alt="Горы" src="./images/dombai.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Домбай</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
           <li class="elements__item">
             <img class="elements__img" alt="Здание посреди природы" src="./images/karachevsk.jpg">
             <div class="elements__description">
               <h2 class="elements__place">Карачаевск</h2>
-              <button class="elements__heart"></button>
+              <input type="button" class="elements__heart">
             </div>
           </li>
         </ul>
@@ -74,11 +76,11 @@
     </main>
     <div class="popup">
       <form class="popup__container">
-        <button class="popup__close"></button>
+        <input type="button" class="popup__close">
         <h3 class="popup__heading">Редактировать профиль</h3>
         <fieldset class="popup__input-container">
           <input class="popup__item popup__item_el_name" type="text" id="name" name="name" placeholder="Имя" required>
-          <input class="popup__item popup__item_el_status" type="text" id="status" name="status" placeholder="О себе" required>
+          <input class="popup__item popup__item_el_job" type="text" id="job" name="job" placeholder="О себе" required>
         </fieldset>
         <fieldset class="popup__handlers">
           <input type="submit" class="popup__button" value="Сохранить">
@@ -89,5 +91,6 @@
       <p class="footer__copyright">&copy; 2022 Дарья Шипилова</p>
     </footer>
   </div>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
