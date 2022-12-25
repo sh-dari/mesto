@@ -1,12 +1,12 @@
 .popup__close {
   position: absolute;
-  right: -35px;
+  right: -40px;
   top: -40px;
   max-width: 32px;
   width: 100%;
   min-height: 32px;
   padding: 0;
-  background-image: url(../../../images/closeIcon.png);
+  background-image: url(../../../images/closeIcon.svg);
   background-repeat: no-repeat;
   border: none;
   background-color: transparent;
@@ -24,7 +24,7 @@
   .popup__close {
     max-width: 20px;
     min-height: 20px;
-    top: -30px;
+    top: -37px;
     right: 0;
   }
 }

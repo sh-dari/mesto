@@ -2,7 +2,8 @@
   max-width: 22px;
   width: 100%;
   min-height: 19px;
-  background-image: url(../../../images/heart.png);
+  background-image: url(../../../images/heart.svg);
+  background-size: 22px 19px;
   background-repeat: no-repeat;
   border: none;
   background-color: #fff;
@@ -15,5 +16,5 @@
 }
 
 .elements__heart:active {
-  background-image: url(../../../images/heartActive.png);
+  background-image: url(../../../images/heartActive.svg);
 }
