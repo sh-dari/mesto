@@ -9,4 +9,5 @@
   justify-content: center;
   align-items: center;
   display: none;
+  overflow-y: scroll;
 }
