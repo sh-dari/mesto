@@ -7,14 +7,10 @@
   background-repeat: no-repeat;
   border: none;
   background-color: #fff;
-  transition: opacity .3s ease-out;
+  transition: opacity .1s ease-out;
 }
 
 .elements__heart:hover {
   opacity: .5;
   cursor: pointer;
-}
-
-.elements__heart:active {
-  background-image: url(../../../images/heartActive.svg);
 }

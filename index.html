@@ -29,48 +29,6 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <li class="elements__item">
-            <img class="elements__img" alt="Здание посреди природы" src="./images/karachevsk.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Карачаевск</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__img" alt="Поле на рассвете" src="./images/elbrus.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Гора Эльбрус</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__img" alt="Горы" src="./images/dombai.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Домбай</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__img" alt="Поле на рассвете" src="./images/elbrus.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Гора Эльбрус</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__img" alt="Горы" src="./images/dombai.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Домбай</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
-          <li class="elements__item">
-            <img class="elements__img" alt="Здание посреди природы" src="./images/karachevsk.jpg">
-            <div class="elements__description">
-              <h2 class="elements__place">Карачаевск</h2>
-              <button type="button" class="elements__heart"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -87,10 +45,40 @@
         </form>
       </div>
     </div>
+    <div class="popup popup_for_card">
+      <div class="popup__content">
+        <form class="popup__container">
+          <button type="button" class="popup__close"></button>
+          <h2 class="popup__heading">Новое место</h2>
+          <fieldset class="popup__input-container">
+            <input class="popup__item popup__item_el_place" type="text" id="name" name="name" placeholder="Название" required>
+            <input class="popup__item popup__item_el_link" type="text" id="job" name="job" placeholder="Ссылка на картинку" required>
+          </fieldset>
+          <button type="submit" class="popup__button" value="Сохранить">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_for_image">
+      <div class="popup__content popup__content_for_image">
+        <button type="button" class="popup__close"></button>
+        <img class="popup__img" alt="Увеличенная карточка">
+        <p class="popup__text"></p>
+      </div>
+    </div>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Дарья Шипилова</p>
     </footer>
   </div>
+  <template id="item-template">
+    <li class="elements__item">
+      <img class="elements__img" alt="Карточка профиля">
+      <div class="elements__description">
+        <h2 class="elements__place"></h2>
+        <button type="button" class="elements__heart"></button>
+      </div>
+      <button type="button" class="elements__trash"></button>
+    </li>
+  </template>
   <script src="./scripts/index.js"></script>
 </body>
 </html>

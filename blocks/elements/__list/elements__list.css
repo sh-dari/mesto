@@ -1,17 +1,10 @@
 .elements__list {
-  max-width: 880px;
+  max-width: max-content;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   list-style: none;
   gap: 17px;
-  margin: 0 auto;
+  margin: 0;
   padding: 51px 0 0;
-}
-
-@media screen and (max-width: 720px) {
-  .elements__list {
-    padding-top: 36px;
-    gap: 20px;
-  }
 }
