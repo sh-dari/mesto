@@ -1,6 +1,6 @@
 .popup__content {
   position: relative;
-  top: 50%;
+  top: -70px;
   left: 0;
   max-width: 430px;
   background-color: #fff;
