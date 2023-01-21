@@ -1,6 +1,6 @@
 .popup__content {
   position: relative;
-  top: -58px;
+  top: 50%;
   left: 0;
   max-width: 430px;
   background-color: #fff;
@@ -11,6 +11,5 @@
 @media screen and (max-width: 720px) {
   .popup__content {
     max-width: 282px;
-    top: -135px;
   }
 }
