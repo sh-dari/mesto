@@ -16,8 +16,8 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const cardsContainer = document.querySelector('.elements__list');
 
-const itemTemplate = document.querySelector('#item-template').content;
-const itemElement = itemTemplate.querySelector('.elements__item');
+const cardTemplate = document.querySelector('#item-template').content;
+const cardElement = cardTemplate.querySelector('.elements__item');
 
 const buttonsClose = document.querySelectorAll('.popup__close');
 const buttonEdit = document.querySelector('.profile__edit-button');
@@ -38,17 +38,17 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
-function editCard(){
+function openProfilePopup(){
   nameInput.value = profileName.textContent;
   jobInput.value = profileJob.textContent;
   openPopup(profilePopup);
 }
 
 function createCard(cardData) {
-  const cloneElement = itemElement.cloneNode(true);
-  const buttonLike = cloneElement.querySelector('.elements__heart');
-  const buttonTrash = cloneElement.querySelector('.elements__trash');
-  const imgCard = cloneElement.querySelector('.elements__img');
+  const cloneCard = cardElement.cloneNode(true);
+  const buttonLike = cloneCard.querySelector('.elements__heart');
+  const buttonTrash = cloneCard.querySelector('.elements__trash');
+  const imgCard = cloneCard.querySelector('.elements__img');
   buttonLike.addEventListener("click", () => {
     buttonLike.classList.toggle('elements__heart_active');
   });
@@ -63,8 +63,8 @@ function createCard(cardData) {
   });
   imgCard.src = cardData.link;
   imgCard.alt = cardData.name;
-  cloneElement.querySelector('.elements__place').textContent = cardData.name;
-  return cloneElement;
+  cloneCard.querySelector('.elements__place').textContent = cardData.name;
+  return cloneCard;
 }
 
 function handleCardFormSubmit (evt) {
@@ -80,7 +80,7 @@ buttonsClose.forEach((button) => {
   })
 });
 
-buttonEdit.addEventListener('click', editCard);
+buttonEdit.addEventListener('click', openProfilePopup);
 
 buttonAdd.addEventListener('click', () => {
   openPopup(cardPopup);
