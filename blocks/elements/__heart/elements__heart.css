@@ -13,4 +13,6 @@
 .elements__heart:hover {
   opacity: .5;
   cursor: pointer;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
 }

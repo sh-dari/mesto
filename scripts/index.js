@@ -49,7 +49,7 @@ function createCard(cardData) {
   const buttonLike = cloneCard.querySelector('.elements__heart');
   const buttonTrash = cloneCard.querySelector('.elements__trash');
   const imgCard = cloneCard.querySelector('.elements__img');
-  buttonLike.addEventListener("click", () => {
+  buttonLike.addEventListener('click', () => {
     buttonLike.classList.toggle('elements__heart_active');
   });
   buttonTrash.addEventListener('click', () => {
