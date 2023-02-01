@@ -6,7 +6,7 @@
   background-size: 22px 19px;
   background-repeat: no-repeat;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   transition: opacity .1s ease-out;
 }
 
