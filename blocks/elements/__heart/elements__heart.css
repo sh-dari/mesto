@@ -10,9 +10,9 @@
   transition: opacity .1s ease-out;
 }
 
-.elements__heart:hover {
-  opacity: .5;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
+@media screen and (min-width: 450px) {
+  .elements__heart:hover {
+    opacity: .5;
+    cursor: pointer;
+  }
 }
