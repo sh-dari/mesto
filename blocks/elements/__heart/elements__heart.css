@@ -1,5 +1,6 @@
 .elements__heart {
   max-width: 22px;
+  padding: 0;
   width: 100%;
   min-height: 19px;
   background-image: url(../../../images/heart.svg);
