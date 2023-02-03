@@ -3,6 +3,8 @@
   width: 282px;
   height: 282px;
   object-fit: cover;
+  background-color: #000;
+  color: #fff;
 }
 
 .elements__img:hover {
