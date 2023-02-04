@@ -3,7 +3,7 @@
   width: 100%;
   min-height: 50px;
   border: 0;
-  margin: 18px auto 37px;
+  margin: 20px auto 37px;
   padding: 0;
   cursor: pointer;
   transition: opacity .3s ease-out;
@@ -17,6 +17,14 @@
 
 .popup__button:hover {
   opacity: .8;
+}
+
+.popup__button:disabled {
+  background-color: #fff;
+  color: #000;
+  opacity: 0.2;
+  border: 1px solid #000000;
+  cursor: default;
 }
 
 @media screen and (max-width: 720px) {

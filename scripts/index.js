@@ -24,12 +24,26 @@ const cardElement = cardTemplate.querySelector('.elements__item');
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
 
-function closePopup(element) {
-  element.classList.remove('popup_opened');
+const handleCloseEscPopup = (evt) => {
+  if (evt.key === 'Escape'){
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 
 function openPopup(element) {
   element.classList.add('popup_opened');
+  document.addEventListener('keydown', handleCloseEscPopup);
+}
+
+function closePopup(element) {
+  element.classList.remove('popup_opened');
+  document.removeEventListener('keydown', handleCloseEscPopup);
+}
+
+function openProfilePopup(){
+  nameInput.value = profileName.textContent;
+  jobInput.value = profileJob.textContent;
+  openPopup(profilePopup);
 }
 
 function handleProfileFormSubmit(evt) {
@@ -37,12 +51,6 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileJob.textContent = jobInput.value;
   closePopup(profilePopup);
-}
-
-function openProfilePopup(){
-  nameInput.value = profileName.textContent;
-  jobInput.value = profileJob.textContent;
-  openPopup(profilePopup);
 }
 
 function createCard(cardData) {
@@ -68,12 +76,16 @@ function createCard(cardData) {
   return cloneCard;
 }
 
-function handleCardFormSubmit (evt) {
+function handleCardFormSubmit(evt) {
   evt.preventDefault();
   cardsContainer.prepend(createCard({link: linkInput.value, name: placeInput.value}));
   cardPopupContainer.reset();
   closePopup(cardPopup);
 }
+
+initialCards.forEach(card => {
+  cardsContainer.append(createCard(card));
+});
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
@@ -83,7 +95,7 @@ popups.forEach((popup) => {
     if (evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }
-  })
+  });
 });
 
 buttonEdit.addEventListener('click', openProfilePopup);
@@ -95,7 +107,3 @@ buttonAdd.addEventListener('click', () => {
 profilePopupContainer.addEventListener('submit', handleProfileFormSubmit);
 
 cardPopupContainer.addEventListener('submit', handleCardFormSubmit);
-
-initialCards.forEach(card => {
-  cardsContainer.append(createCard(card));
-});
