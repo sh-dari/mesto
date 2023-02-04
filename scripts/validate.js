@@ -37,6 +37,7 @@ const checkInputValidity = (formElement, inputElement, classes) => {
 const setEventListeners = (formElement, classes) => {
   const inputList = Array.from(formElement.querySelectorAll(classes.inputSelector));
   const buttonElement = formElement.closest(classes.formSelector).querySelector(classes.submitButtonSelector);
+  toggleButtonState(inputList, buttonElement);
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, classes);
@@ -48,7 +49,7 @@ const setEventListeners = (formElement, classes) => {
 const enableValidation = (classes) => {
   const formList = Array.from(document.querySelectorAll(classes.formSelector));
   formList.forEach((formElement) => {
-    const fieldsetList = Array.from(formElement.querySelectorAll(classes.fieldsetSelector))
+    const fieldsetList = Array.from(formElement.querySelectorAll(classes.fieldsetSelector));
     fieldsetList.forEach((fieldset) => {
       setEventListeners(fieldset, classes);
     });

@@ -80,6 +80,7 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   cardsContainer.prepend(createCard({link: linkInput.value, name: placeInput.value}));
   cardPopupContainer.reset();
+  cardPopup.querySelector('.popup__button').setAttribute("disabled", "disabled");
   closePopup(cardPopup);
 }
 
@@ -98,12 +99,19 @@ popups.forEach((popup) => {
   });
 });
 
-buttonEdit.addEventListener('click', openProfilePopup);
+buttonEdit.addEventListener('click', () => {
+  profilePopup.querySelector('.popup__button').removeAttribute("disabled", "disabled");
+  profilePopup.querySelectorAll('.popup__item').forEach((el) => {
+    el.classList.remove('popup__item_type_error');
+  });
+  profilePopup.querySelectorAll('.popup__item-error').forEach((el) => {
+    el.classList.remove('popup__item-error_active');
+    el.textContent = '';
+  });
+  openProfilePopup();
+});
 
 buttonAdd.addEventListener('click', () => {
-  const inputList = Array.from(cardPopup.querySelectorAll('.popup__item'));
-  const buttonElement = cardPopupContainer.querySelector('.popup__button');
-  toggleButtonState(inputList, buttonElement);
   openPopup(cardPopup);
 });
 
