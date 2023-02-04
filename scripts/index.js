@@ -101,6 +101,9 @@ popups.forEach((popup) => {
 buttonEdit.addEventListener('click', openProfilePopup);
 
 buttonAdd.addEventListener('click', () => {
+  const inputList = Array.from(cardPopup.querySelectorAll('.popup__item'));
+  const buttonElement = cardPopupContainer.querySelector('.popup__button');
+  toggleButtonState(inputList, buttonElement);
   openPopup(cardPopup);
 });
 

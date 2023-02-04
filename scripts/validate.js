@@ -37,9 +37,6 @@ const checkInputValidity = (formElement, inputElement, classes) => {
 const setEventListeners = (formElement, classes) => {
   const inputList = Array.from(formElement.querySelectorAll(classes.inputSelector));
   const buttonElement = formElement.closest(classes.formSelector).querySelector(classes.submitButtonSelector);
-  if (buttonElement.closest(classes.popupSelector).classList.contains(classes.popupCardSelector)) {
-    toggleButtonState(inputList, buttonElement);
-  }
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, classes);
@@ -63,7 +60,6 @@ enableValidation({
   inputSelector: '.popup__item',
   submitButtonSelector: '.popup__button',
   popupSelector: '.popup',
-  popupCardSelector: 'popup_for_card',
   fieldsetSelector: '.popup__input-container',
   inputErrorClass: 'popup__item_type_error',
   errorClass: 'popup__item-error_active'
