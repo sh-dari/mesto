@@ -1,3 +1,7 @@
+import {Card} from './Card.js';
+import {initialCards, validationConfig} from './constants.js';
+import {disableSubmitButton, enableSubmitButton, removeValidationErrors} from './validate.js'
+
 const popups = document.querySelectorAll('.popup')
 
 const profilePopup = document.querySelector('.popup_for_profile');
@@ -14,16 +18,10 @@ const linkInput = cardPopupContainer.querySelector('.popup__item_el_link');
 const cardInputs = cardPopup.querySelectorAll('.popup__item');
 const cardInputErrors = cardPopup.querySelectorAll('.popup__item-error');
 
-const imgPopup = document.querySelector('.popup_for_image');
-const imgInput = imgPopup.querySelector('.popup__img');
-const textInput = imgPopup.querySelector('.popup__text');
-
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 
 const cardsContainer = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('#item-template').content;
-const cardElement = cardTemplate.querySelector('.elements__item');
 
 const buttonEdit = document.querySelector('.profile__edit-button');
 const buttonAdd = document.querySelector('.profile__add-button');
@@ -59,40 +57,22 @@ function handleProfileFormSubmit(evt) {
   closePopup(profilePopup);
 }
 
-function createCard(cardData) {
-  const cloneCard = cardElement.cloneNode(true);
-  const buttonLike = cloneCard.querySelector('.elements__heart');
-  const buttonTrash = cloneCard.querySelector('.elements__trash');
-  const imgCard = cloneCard.querySelector('.elements__img');
-  const placeCard = cloneCard.querySelector('.elements__place');
-  buttonLike.addEventListener('click', () => {
-    buttonLike.classList.toggle('elements__heart_active');
-  });
-  buttonTrash.addEventListener('click', () => {
-    buttonTrash.closest('.elements__item').remove();
-  });
-  imgCard.addEventListener('click', () => {
-    imgInput.src = cardData.link;
-    imgInput.alt = cardData.name;
-    textInput.textContent = cardData.name;
-    openPopup(imgPopup);
-  });
-  imgCard.src = cardData.link;
-  imgCard.alt = cardData.name;
-  placeCard.textContent = cardData.name;
-  return cloneCard;
+function createNewCard(data) {
+  const card = new Card(data, '#item-template')
+  const cardElement = card.generateCard();
+  return cardElement
 }
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  cardsContainer.prepend(createCard({link: linkInput.value, name: placeInput.value}));
+  cardsContainer.prepend(createNewCard({link: linkInput.value, name: placeInput.value}));
   cardPopupContainer.reset();
   disableSubmitButton(buttonSubmitCard);
   closePopup(cardPopup);
 }
 
-initialCards.forEach(card => {
-  cardsContainer.append(createCard(card));
+initialCards.forEach(item => {
+  cardsContainer.append(createNewCard(item));
 });
 
 popups.forEach((popup) => {
