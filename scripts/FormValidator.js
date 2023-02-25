@@ -66,10 +66,6 @@ class FormValidator {
       itemError.classList.remove(this._errorClass);
       itemError.textContent = '';
     });
-    // itemErrors.forEach((el) => {
-    //   el.classList.remove(this._errorClass);
-    //   el.textContent = '';
-    // });
   }
 
   enableValidation() {
