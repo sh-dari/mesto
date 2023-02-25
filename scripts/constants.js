@@ -35,4 +35,8 @@ const validationConfig = {
   errorClass: 'popup__item-error_active'
 }
 
-export {initialCards, validationConfig};
+const imgPopup = document.querySelector('.popup_for_image');
+const imgInput = imgPopup.querySelector('.popup__img');
+const textInput = imgPopup.querySelector('.popup__text');
+
+export {initialCards, validationConfig, imgPopup, imgInput, textInput};

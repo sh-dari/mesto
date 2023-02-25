@@ -1,6 +1,7 @@
 import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 import {initialCards, validationConfig} from './constants.js';
-import {disableSubmitButton, enableSubmitButton, removeValidationErrors} from './validate.js'
+import {disableSubmitButton, enableSubmitButton} from './validate.js'
 
 const popups = document.querySelectorAll('.popup')
 
@@ -8,15 +9,11 @@ const profilePopup = document.querySelector('.popup_for_profile');
 const profilePopupContainer = profilePopup.querySelector('.popup__container');
 const nameInput = profilePopupContainer.querySelector('.popup__item_el_name');
 const jobInput = profilePopupContainer.querySelector('.popup__item_el_job');
-const profileInputs = profilePopup.querySelectorAll('.popup__item');
-const profileInputErrors = profilePopup.querySelectorAll('.popup__item-error');
 
 const cardPopup = document.querySelector('.popup_for_card');
 const cardPopupContainer = cardPopup.querySelector('.popup__container');
 const placeInput = cardPopupContainer.querySelector('.popup__item_el_place');
 const linkInput = cardPopupContainer.querySelector('.popup__item_el_link');
-const cardInputs = cardPopup.querySelectorAll('.popup__item');
-const cardInputErrors = cardPopup.querySelectorAll('.popup__item-error');
 
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
@@ -34,12 +31,12 @@ const handleCloseEscPopup = (evt) => {
   }
 }
 
-function openPopup(element) {
+const openPopup = (element) => {
   element.classList.add('popup_opened');
   document.addEventListener('keydown', handleCloseEscPopup);
 }
 
-function closePopup(element) {
+const closePopup = (element) => {
   element.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleCloseEscPopup);
 }
@@ -77,10 +74,8 @@ initialCards.forEach(item => {
 
 popups.forEach((popup) => {
   popup.addEventListener('mousedown', (evt) => {
-    if (evt.target.classList.contains('popup_opened')) {
-      closePopup(popup);
-    }
-    if (evt.target.classList.contains('popup__close')) {
+    if (evt.target.classList.contains('popup_opened') ||
+        evt.target.classList.contains('popup__close')) {
       closePopup(popup);
     }
   });
@@ -88,16 +83,18 @@ popups.forEach((popup) => {
 
 buttonEdit.addEventListener('click', () => {
   enableSubmitButton(buttonSubmitProfile);
-  removeValidationErrors(profileInputs, profileInputErrors, validationConfig);
+  new FormValidator(validationConfig, profilePopup).removeValidationErrors();
   openProfilePopup();
 });
 
 buttonAdd.addEventListener('click', () => {
   cardPopupContainer.reset();
-  removeValidationErrors(cardInputs, cardInputErrors, validationConfig);
+  new FormValidator(validationConfig, cardPopup).removeValidationErrors();
   openPopup(cardPopup);
 });
 
 profilePopupContainer.addEventListener('submit', handleProfileFormSubmit);
 
 cardPopupContainer.addEventListener('submit', handleCardFormSubmit);
+
+export {openPopup};

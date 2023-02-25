@@ -1,6 +1,5 @@
-const imgPopup = document.querySelector('.popup_for_image');
-const imgInput = imgPopup.querySelector('.popup__img');
-const textInput = imgPopup.querySelector('.popup__text');
+import {imgPopup, imgInput, textInput} from './constants.js';
+import {openPopup} from './index.js';
 
 class Card {
   constructor(data, templateSelector) {
@@ -18,42 +17,30 @@ class Card {
     return cardElement;
   }
 
-  _handleCloseEscPopup (evt) {
-    if (evt.key === 'Escape'){
-      imgPopup.classList.remove('popup_opened');
-      document.removeEventListener('keydown', this._handleCloseEscPopup);
-    }
-  }
-
-  _openImgPopup() {
-    imgPopup.classList.add('popup_opened');
-    document.addEventListener('keydown', this._handleCloseEscPopup);
-  }
-
   _setEventListeners() {
     const buttonLike = this._element.querySelector('.elements__heart');
     const buttonTrash = this._element.querySelector('.elements__trash');
-    const imgCard = this._element.querySelector('.elements__img');
     buttonLike.addEventListener('click', () => {
       buttonLike.classList.toggle('elements__heart_active');
     });
     buttonTrash.addEventListener('click', () => {
-      buttonTrash.closest('.elements__item').remove();
+      this._element.remove();
     });
-    imgCard.addEventListener('click', () => {
+    this._image.addEventListener('click', () => {
       imgInput.src = this._link;
       imgInput.alt = this._name;
       textInput.textContent = this._name;
-      this._openImgPopup();
+      openPopup(imgPopup);
     });
   }
 
   generateCard() {
     this._element = this._getTemplate();
-    this._setEventListeners();
-    this._element.querySelector('.elements__img').src = this._link;
-    this._element.querySelector('.elements__img').alt = this._name;
+    this._image = this._element.querySelector('.elements__img');
+    this._image.src = this._link;
+    this._image.alt = this._name;
     this._element.querySelector('.elements__place').textContent = this._name;
+    this._setEventListeners();
 
     return this._element;
   }
