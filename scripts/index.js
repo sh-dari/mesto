@@ -1,7 +1,6 @@
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {initialCards, validationConfig} from './constants.js';
-import {disableSubmitButton, enableSubmitButton} from './validate.js'
 
 const popups = document.querySelectorAll('.popup')
 
@@ -25,6 +24,9 @@ const buttonAdd = document.querySelector('.profile__add-button');
 const buttonSubmitCard = cardPopup.querySelector('.popup__button');
 const buttonSubmitProfile = profilePopup.querySelector('.popup__button');
 
+const profileValidator = new FormValidator(validationConfig, profilePopupContainer);
+const cardValidator = new FormValidator(validationConfig, cardPopupContainer);
+
 const handleCloseEscPopup = (evt) => {
   if (evt.key === 'Escape'){
     closePopup(document.querySelector('.popup_opened'));
@@ -40,6 +42,14 @@ const closePopup = (element) => {
   element.classList.remove('popup_opened');
   document.removeEventListener('keydown', handleCloseEscPopup);
 }
+
+const disableSubmitButton = (button) => {
+  button.setAttribute("disabled", "disabled");
+};
+
+const enableSubmitButton = (button) => {
+  button.removeAttribute("disabled", "disabled");
+};
 
 function openProfilePopup(){
   nameInput.value = profileName.textContent;
@@ -82,14 +92,16 @@ popups.forEach((popup) => {
 });
 
 buttonEdit.addEventListener('click', () => {
+  profileValidator.enableValidation();
+  profileValidator.removeValidationErrors();
   enableSubmitButton(buttonSubmitProfile);
-  new FormValidator(validationConfig, profilePopup).removeValidationErrors();
   openProfilePopup();
 });
 
 buttonAdd.addEventListener('click', () => {
   cardPopupContainer.reset();
-  new FormValidator(validationConfig, cardPopup).removeValidationErrors();
+  cardValidator.enableValidation();
+  cardValidator.removeValidationErrors();
   openPopup(cardPopup);
 });
 
