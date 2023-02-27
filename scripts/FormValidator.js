@@ -59,8 +59,8 @@ class FormValidator {
   }
 
   removeValidationErrors() {
-    const InputList = Array.from(this._form.querySelectorAll(this._inputSelector));
-    InputList.forEach((el) => {
+    this._toggleButtonState();
+    this._inputList.forEach((el) => {
       el.classList.remove(this._inputErrorClass);
       const itemError = this._form.querySelector(`.${el.id}-error`);
       itemError.classList.remove(this._errorClass);
