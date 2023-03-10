@@ -1,13 +1,22 @@
-class FormValidator {
-  constructor(data, form) {
-    this._formSelector = data.formSelector;
-    this._inputSelector = data.inputSelector;
-    this._submitButtonSelector = data.submitButtonSelector;
-    this._popupSelector = data.popupSelector;
-    this._fieldsetSelector = data.fieldsetSelector;
-    this._inputErrorClass = data.inputErrorClass;
-    this._errorClass = data.errorClass;
-    this._form = form;
+export default class FormValidator {
+  constructor(
+    { formSelector,
+    inputSelector,
+    submitButtonSelector,
+    popupSelector,
+    fieldsetSelector,
+    inputErrorClass,
+    errorClass },
+    form)
+    {
+      this._formSelector = formSelector;
+      this._inputSelector = inputSelector;
+      this._submitButtonSelector = submitButtonSelector;
+      this._popupSelector = popupSelector;
+      this._fieldsetSelector = fieldsetSelector;
+      this._inputErrorClass = inputErrorClass;
+      this._errorClass = errorClass;
+      this._form = form;
   }
 
   _hasInvalidInput() {
@@ -30,8 +39,8 @@ class FormValidator {
     errorElement.textContent = '';
   }
 
-  _toggleButtonState(inputElement) {
-    if (this._hasInvalidInput(inputElement)) {
+  _toggleButtonState() {
+    if (this._hasInvalidInput()) {
       this._buttonElement.setAttribute("disabled", "disabled");
     } else {
       this._buttonElement.removeAttribute("disabled", "disabled");
@@ -53,18 +62,15 @@ class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputElement);
+        this._toggleButtonState();
       });
     });
   }
 
   removeValidationErrors() {
     this._toggleButtonState();
-    this._inputList.forEach((el) => {
-      el.classList.remove(this._inputErrorClass);
-      const itemError = this._form.querySelector(`.${el.id}-error`);
-      itemError.classList.remove(this._errorClass);
-      itemError.textContent = '';
+    this._inputList.forEach((input) => {
+      this._hideInputError(input);
     });
   }
 
@@ -72,5 +78,3 @@ class FormValidator {
     this._setEventListeners();
   }
 }
-
-export {FormValidator};

@@ -1,11 +1,9 @@
-import {imgPopup, imgInput, textInput} from './constants.js';
-import {openPopup} from './index.js';
-
-class Card {
-  constructor(data, templateSelector) {
-    this._name = data.name;
-    this._link = data.link;
+export default class Card {
+  constructor({ name, link }, templateSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -27,10 +25,7 @@ class Card {
       this._element.remove();
     });
     this._image.addEventListener('click', () => {
-      imgInput.src = this._link;
-      imgInput.alt = this._name;
-      textInput.textContent = this._name;
-      openPopup(imgPopup);
+      this._handleCardClick({name: this._name, link: this._link});
     });
   }
 
@@ -45,5 +40,3 @@ class Card {
     return this._element;
   }
 }
-
-export {Card};
