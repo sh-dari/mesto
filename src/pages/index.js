@@ -8,11 +8,7 @@ import {
   initialCards,
   validationConfig,
   profilePopupContainer,
-  nameInput,
-  jobInput,
   cardPopupContainer,
-  placeInput,
-  linkInput,
   buttonEdit,
   buttonAdd
 } from '../scripts/utils/constants.js';
@@ -25,11 +21,18 @@ const userInfo = new UserInfo({nameSelector: '.profile__name', infoSelector: '.p
 
 const imgPopup = new PopupWithImage('.popup_for_image');
 
+const createCard = (item) => {
+  const card = new Card(item, '#item-template', () => {
+    imgPopup.open(item);
+  });
+  const cardElement = card.generateCard();
+  return cardElement
+}
+
 const profilePopup = new PopupWithForm(
   '.popup_for_profile',
-  (evt) => {
-    evt.preventDefault();
-    userInfo.setUserInfo({name: nameInput.value, link: jobInput.value});
+  (formData) => {
+    userInfo.setUserInfo(formData);
     profilePopup.close();
   }
 );
@@ -37,23 +40,15 @@ const profilePopup = new PopupWithForm(
 const cardList = new Section(
   {items: initialCards,
   renderer:(item) => {
-    const card = new Card(item, '#item-template', () => {
-      imgPopup.open(item);
-    });
-    cardList.addItem(card.generateCard());
+    cardList.addItem(createCard(item));
   }},
   '.elements__list'
 );
 
 const cardPopup = new PopupWithForm(
   '.popup_for_card',
-  (evt) => {
-    evt.preventDefault();
-    const data = {link: linkInput.value, name: placeInput.value};
-    const card = new Card(data, '#item-template', () => {
-      imgPopup.open(data);
-    });
-    cardList.addItemEnd(card.generateCard());
+  (formData) => {
+    cardList.addItemEnd(createCard(formData));
     cardPopup.close();
   }
 );
@@ -68,9 +63,7 @@ cardPopup.setEventListeners();
 imgPopup.setEventListeners();
 
 buttonEdit.addEventListener('click', () => {
-  const { name, link } = userInfo.getUserInfo();
-  nameInput.value = name.textContent;
-  jobInput.value = link.textContent;
+  profilePopup.setInputValues(userInfo.getUserInfo());
   profileValidator.removeValidationErrors();
   profilePopup.open();
 });

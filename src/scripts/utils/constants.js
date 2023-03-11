@@ -37,13 +37,9 @@ export const validationConfig = {
 
 const profilePopupSelector = document.querySelector('.popup_for_profile');
 export const profilePopupContainer = profilePopupSelector.querySelector('.popup__container');
-export const nameInput = profilePopupContainer.querySelector('.popup__item_el_name');
-export const jobInput = profilePopupContainer.querySelector('.popup__item_el_job');
 
 const cardPopupSelector = document.querySelector('.popup_for_card');
 export const cardPopupContainer = cardPopupSelector.querySelector('.popup__container');
-export const placeInput = cardPopupContainer.querySelector('.popup__item_el_place');
-export const linkInput = cardPopupContainer.querySelector('.popup__item_el_link');
 
 export const buttonEdit = document.querySelector('.profile__edit-button');
 export const buttonAdd = document.querySelector('.profile__add-button');
