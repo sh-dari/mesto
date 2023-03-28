@@ -26,7 +26,12 @@ const userInfo = new UserInfo({nameSelector: '.profile__name', infoSelector: '.p
 const imgPopup = new PopupWithImage('.popup_for_image');
 const popupDelete = new PopupDelete('.popup_for_delete');
 
-const cardList = new Section('.elements__list');
+const cardList = new Section(
+  {renderer:(item) => {
+    cardList.addItem(createCard(item));
+  }},
+  '.elements__list'
+);
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
@@ -42,9 +47,7 @@ api.getDataToLoadPage()
     userInfo.setUserInfo(userData);
     userInfo.setUserAvatar(userData.avatar);
     userInfo.setUserId(userData._id);
-    initialCardsData.forEach((data)=>{
-      cardList.addItem(createCard(data));
-    });
+    cardList.renderItems(initialCardsData);
   })
   .catch((err) => {
     console.log(err);
@@ -59,7 +62,10 @@ const createCard = (item) => {
     },
     handleTrashClick: () => {
       popupDelete.changeHandleFormSubmit(()=>{
-        api.deleteCard(card.getId());
+        api.deleteCard(card.getId())
+          .catch((err) => {
+            console.log(err);
+          });
         card.deleteCard();
         popupDelete.close();
       });
@@ -97,15 +103,15 @@ const profilePopup = new PopupWithForm(
   (formData) => {
     profilePopup.renderLoading(true);
     api.updateUserInfo(formData)
-      .then(() => {
-        userInfo.setUserInfo(formData);
+      .then((userData) => {
+        userInfo.setUserInfo(userData);
+        profilePopup.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         profilePopup.renderLoading(false);
-        profilePopup.close();
       });
   }
 );
@@ -117,13 +123,13 @@ const popupChangeAvatar = new PopupWithForm(
     api.changeAvatar(formData.link)
       .then((data) => {
         userInfo.setUserAvatar(data.avatar);
+        popupChangeAvatar.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         popupChangeAvatar.renderLoading(false);
-        popupChangeAvatar.close();
       });
   });
 
@@ -134,13 +140,13 @@ const cardPopup = new PopupWithForm(
     api.addNewCard(formData)
     .then((cardData) => {
       cardList.addItemEnd(createCard(cardData));
+      cardPopup.close();
     })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
       cardPopup.renderLoading(false);
-      cardPopup.close();
     });
   }
 );
