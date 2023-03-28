@@ -63,11 +63,13 @@ const createCard = (item) => {
     handleTrashClick: () => {
       popupDelete.changeHandleFormSubmit(()=>{
         api.deleteCard(card.getId())
+          .then(() => {
+            card.deleteCard();
+            popupDelete.close();
+          })
           .catch((err) => {
             console.log(err);
           });
-        card.deleteCard();
-        popupDelete.close();
       });
       popupDelete.open();
     },
